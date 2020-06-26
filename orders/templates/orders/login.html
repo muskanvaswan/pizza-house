@@ -1,0 +1,27 @@
+{% extends 'orders/layout.html' %}
+
+{% block title %}
+  Login
+{% endblock %}
+
+{% block main %}
+{% if message %}
+    <div>
+        {{ message }}
+    </div>
+    {% endif %}
+    <form action="{% url 'login' %}" method="post" class='form-group'>
+        {% csrf_token %}
+        <div class='form-control'>
+          <input name="username" type="text"/ >
+        </div>
+        <div class='form-control'>
+          <input name="password" type="password"/>
+        </div>
+        <div class='form-control'>
+          <input type="submit" value="Login"/>
+        </div>
+    </form>
+    <br/>
+    <a href="{% url 'sign_up'%}">Not a User? Sign in</a>
+{% endblock%}

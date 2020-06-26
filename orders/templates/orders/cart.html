@@ -1,0 +1,18 @@
+{% extends 'orders/layout.html' %}
+{% block title %} Cart {% endblock %}
+
+{% block main %}
+  <h2>Orders</h2>
+  <ul>
+    {% for order in orders %}
+      <li>{{ order }}</li>
+      <ul>
+        {% for topping in order.toppings.all %}
+            <li>{{ topping }}</li>
+        {% endfor %}
+      </ul>
+    {% endfor %}
+  </ul>
+  <h2>Total Cost: {{ total }}</h2>
+  <a  href="{% url 'porder' %}">Place Order</a>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'orders/layout.html' %}
+{% block title %}
+  {{ item.type }} {{ item.name}}
+{% endblock %}
+
+{% block main %}
+  <h3>{{ item.get_type_display }} <br/> {{ item.name }}</h3>
+  <h4>Size: {{ item.size }} </h4>
+  <br/>
+  <form action="{% url 'ordered' item.id %}" method="post" enctype="multipart/form-data" class="form-group">
+    {% csrf_token %}
+      {% for t in toppings_allowed %}
+        {% if t == 0 %}
+        <h4>Topping 1</h4>
+        <select class="form-control" name="topping_1">
+          {% for topping in toppings %}
+            <option value="{{ topping.id }}">{{ topping.name }}</option>
+          {% endfor %}
+        </select>
+        <br/>
+        <br/>
+        {% endif %}
+        {% if t == 1 %}
+        <h4>Topping 2</h4>
+        <select class="form-control" name="topping_2">
+          {% for topping in toppings %}
+            <option value="{{ topping.id }}">{{ topping.name }}</option>
+          {% endfor %}
+        </select>
+        <br/>
+        <br/>
+        {% endif %}
+        {% if t == 2 %}
+        <h4>Topping 2</h4>
+        <select class="form-control" name="topping_3">
+          {% for topping in toppings %}
+            <option value="{{ topping.id }}">{{ topping.name }}</option>
+          {% endfor %}
+        </select>
+        <br/>
+        <br/>
+        {% endif %}
+      {% endfor %}
+      <h3> Cost: {{ item.cost }}</h3>
+      <br/>
+      <button class="form-control" type="submit"> Add to Cart </button>
+  </form>
+{% endblock%}

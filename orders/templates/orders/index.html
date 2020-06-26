@@ -1,0 +1,93 @@
+{% extends 'orders/layout.html' %}
+
+{% block title %} Home {% endblock %}
+{% block main %}
+    <h4> Hello {{ user.first_name }}, here is your MENU. </h4>
+    <a href="{% url 'cart' %}">Click here for Shopping Cart</a>
+    <br/>
+    <a href="{% url 'status' %}">Your Orders</a>
+    <h5>Pizzas, Subs and More </h5>
+    <ul>
+      <h5> Regular Pizzas </h5>
+      {% for item in items %}
+        {% if item.type == 'RP' %}
+          <li>
+            <a href="{% url 'food' item.id %}" >
+              {{ item }}
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+    <ul>
+      <h5> Sicilian Pizzas </h5>
+      {% for item in items %}
+        {% if item.type == 'Silicate_Pizza' %}
+          <li>
+            <a href="{% url 'food' item.id %}" >
+              {{ item }}
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+    <ul>
+      <h5> Subs </h5>
+      {% for item in items %}
+        {% if item.type == 'Subs' %}
+          <li>
+            <a href="{% url 'food' item.id %}" >
+              {{ item }}
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+
+    <ul>
+        <h5>Toppings</h5>
+        {% for topping in toppings %}
+          <li>{{topping}}</li>
+        {% endfor %}
+    </ul>
+    <ul>
+      <h5> Pastas </h5>
+      {% for item in items %}
+        {% if item.type == 'Pasta' %}
+          <li>
+            <a href="{% url 'food' item.id %}" >
+              {{ item }}
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+    <ul>
+      <h5> Salads </h5>
+      {% for item in items %}
+        {% if item.type == 'salad' %}
+          <li>
+            <a href="{% url 'food' item.id %}" >
+              {{ item }}
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+
+    <ul>
+      <h5> Dinner Platters </h5>
+      {% for item in items %}
+        {% if item.type == 'Dinner_Platter' %}
+          <li>
+            <a href="{% url 'food' item.id %}" >
+              {{ item }}
+            </a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+
+
+    <a href="{% url 'logout' %}">Logout</a>
+{% endblock %}

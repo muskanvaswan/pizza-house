@@ -1,0 +1,17 @@
+{% extends 'orders/layout.html' %}
+{% block title %} Your Orders {% endblock %}
+
+{% block main %}
+  <h2>Your Orders</h2>
+  <ul>
+    {% for order in orders %}
+      <li>{{ order }}</li>
+      <ul>
+        {% for topping in order.toppings.all %}
+            <li>{{ topping }}</li>
+        {% endfor %}
+      </ul>
+      <p>{{ order.status }}</p>
+    {% endfor %}
+  </ul>
+{% endblock %}
